@@ -11,4 +11,5 @@ public interface DebitService {
     Mono<Debit> saveDebit(Debit debit);
     Mono<Debit> updateDebit(Debit debit);
     Mono<Debit> deleteDebit(Integer debitId);
+	Mono<Debit> geDebitByIdCustomer(Integer customerId);
 }

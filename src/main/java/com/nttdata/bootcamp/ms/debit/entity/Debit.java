@@ -21,5 +21,6 @@ public class Debit {
     private String expiryDate;
     private Float availableBalance;
     private List<Integer> accountId;
+    private Integer customerId;
 
 }

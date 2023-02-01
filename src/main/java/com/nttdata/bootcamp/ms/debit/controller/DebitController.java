@@ -60,5 +60,10 @@ public class DebitController {
     public Mono<Debit> deleteCredit(@PathVariable Integer id){
         return debitService.deleteDebit(id);
     }
+    
+    @GetMapping ("/customer/{id}")
+    public Mono<Debit> getDebitByIdConsumer(@PathVariable Integer id){
+        return debitService.geDebitByIdCustomer(id);
+    }
 
 }
