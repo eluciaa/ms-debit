@@ -1,12 +1,20 @@
 package com.nttdata.bootcamp.ms.debit.controller;
 
-import com.nttdata.bootcamp.ms.debit.entity.Debit;
-import com.nttdata.bootcamp.ms.debit.service.DebitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nttdata.bootcamp.ms.debit.entity.Debit;
+import com.nttdata.bootcamp.ms.debit.service.DebitService;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -34,10 +42,8 @@ public class DebitController {
      * @return
      */
     @GetMapping ("/{id}")
-    public Mono<ResponseEntity<Debit>> getDebitById(@PathVariable Integer id){
-        return debitService.geDebitById(id).map(response -> ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
-                        .body(response))
-                .defaultIfEmpty(ResponseEntity.badRequest().build());
+    public Mono<Debit> getDebitById(@PathVariable Integer id){
+        return debitService.geDebitById(id);
     }
 
     /**
@@ -62,7 +68,7 @@ public class DebitController {
     }
     
     @GetMapping ("/customer/{id}")
-    public Mono<Debit> getDebitByIdConsumer(@PathVariable Integer id){
+    public Mono<Debit> getDebitByIdConsumer(@PathVariable String id){
         return debitService.geDebitByIdCustomer(id);
     }
 

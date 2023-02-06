@@ -1,10 +1,11 @@
 package com.nttdata.bootcamp.ms.debit.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.nttdata.bootcamp.ms.debit.entity.Debit;
 import com.nttdata.bootcamp.ms.debit.repository.DebitRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -50,9 +51,8 @@ public class DebitServiceImpl implements DebitService{
     }
     
     @Override
-    public Mono<Debit> geDebitByIdCustomer(Integer customerId){
-    	Debit deb = new Debit(null,null,null,null,null,null);
+    public Mono<Debit> geDebitByIdCustomer(String customerId){
         return debitRepository.findAll()
-                .filter(debit -> debit.getCustomerId() ==  customerId).next();
+        		.filter(debit -> debit.getCustomerId().equals(customerId)).next();
     }
 }
